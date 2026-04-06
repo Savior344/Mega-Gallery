@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>VAULT — Galería Privada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ PANTALLA DE CARGA ══════════════════════════════════════ -->
+  <div id="loadingScreen">
+    <div class="loader-inner">
+      <div class="loader-logo">VAULT</div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loaderBar"></div>
+      </div>
+      <div class="loader-status" id="loaderStatus">Conectando con MEGA…</div>
+    </div>
+    <div class="loader-grain"></div>
+  </div>
+
+  <!-- ══ APP PRINCIPAL ══════════════════════════════════════════ -->
+  <div id="app" class="hidden">
+
+    <!-- Cabecera -->
+    <header id="siteHeader">
+      <div class="header-left">
+        <span class="site-logo">VAULT</span>
+        <span class="site-tagline">Galería Privada</span>
+      </div>
+      <div class="header-right">
+        <span class="file-count" id="fileCount">—</span>
+        <button class="icon-btn" id="searchToggle" title="Buscar" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Barra de búsqueda -->
+    <div id="searchBar" class="search-bar hidden">
+      <input type="text" id="searchInput" placeholder="Buscar archivo…" autocomplete="off" />
+      <button id="searchClear" aria-label="Limpiar">✕</button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Todo</button>
+      <button class="filter-btn" data-filter="image">Fotos</button>
+      <button class="filter-btn" data-filter="video">Videos</button>
+    </div>
+
+    <!-- Cuadrícula -->
+    <main id="gallery" class="gallery-grid"></main>
+
+    <!-- Sin resultados -->
+    <div id="emptyState" class="empty-state hidden">
+      <div class="empty-icon">◎</div>
+      <p>Sin resultados</p>
+    </div>
+
+  </div><!-- /app -->
+
+  <!-- ══ LIGHTBOX — IMAGEN ══════════════════════════════════════ -->
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true">
+    <div class="lb-backdrop" id="lbBackdrop"></div>
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Siguiente">›</button>
+    <div class="lb-media-wrap">
+      <img id="lbImg" class="lb-img" src="" alt="" draggable="false" />
+      <div class="lb-spinner" id="lbSpinner"></div>
+    </div>
+    <div class="lb-info">
+      <span id="lbName"></span>
+      <span id="lbSize"></span>
+      <span id="lbCounter"></span>
+    </div>
+  </div>
+
+  <!-- ══ MODAL — VIDEO ══════════════════════════════════════════ -->
+  <div id="videoModal" class="video-modal hidden" role="dialog" aria-modal="true">
+    <div class="vm-backdrop" id="vmBackdrop"></div>
+    <div class="vm-container">
+      <div class="vm-header">
+        <span id="vmTitle"></span>
+        <button class="lb-close" id="vmClose" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="vm-player-wrap">
+        <video id="vmPlayer"
+          controls
+          playsinline
+          preload="metadata"
+          controlsList="nodownload"
+        ></video>
+        <div class="vm-spinner" id="vmSpinner"></div>
+      </div>
+      <div class="vm-meta" id="vmMeta"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
