@@ -1,0 +1,13 @@
+{
+  "name": "galeria-mega",
+  "version": "1.0.0",
+  "description": "Galería multimedia privada con streaming desde MEGA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "megajs": "^1.0.4"
+  }
+}
